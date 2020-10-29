@@ -7,10 +7,11 @@ Todo.propTypes = {
   isDone: PropTypes.bool
 }
 
-function Todo({title, isDone}) {
+function Todo({title, isDone, onClick}) {
+
   return <Wrapper>
     <label>
-      <BigCheckbox type="checkbox" checked={isDone} />
+      <BigCheckbox type="checkbox" checked={isDone} onChange={onClick} />
       <span>{title}</span>
     </label>
   </Wrapper>
