@@ -5,10 +5,26 @@ import { v4 as uuidv4 } from 'uuid';
 import Form from "./Form";
 import saveLocally from "./lib/saveLocally";
 import loadLocally from "./lib/loadLocally";
+import getTodos from "./services/getTodos";
 
 
 function App() {
-  const [todos, setTodos] = useState(loadLocally('todos') ?? [])
+  const [todos, setTodos] = useState([])
+  const [hasDataError, setHasDataError] = useState(false)
+
+  useEffect(() => {
+    try {
+      const localData = loadLocally('todos')
+      setTodos(localData)
+    } catch(error) {
+      setHasDataError(true)
+    }
+  }, [])
+
+  // useEffect(() => {
+  //   getTodos()
+  //   .then(todos => setTodos(todos))
+  // }, [])
 
   useEffect(() => {
     saveLocally('todos', todos)
@@ -19,6 +35,7 @@ function App() {
       <Form onCreateTodo={addTodo} />
       {todos.map(({title, isDone, id}, index) =>
       <Todo onClick={() => toggleTodo(index)} title={title} isDone={isDone} key={id} />)}
+      {hasDataError && <h1>Could not load data.</h1>}
     </div>
   );
 
