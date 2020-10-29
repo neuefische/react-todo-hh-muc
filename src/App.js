@@ -6,6 +6,7 @@ import Form from "./Form";
 import saveLocally from "./lib/saveLocally";
 import loadLocally from "./lib/loadLocally";
 import getTodos from "./services/getTodos";
+import postTodo from "./services/postTodo";
 
 
 function App() {
@@ -29,7 +30,6 @@ function App() {
 
   function toggleTodo(index) {
     const todo = todos[index]
-    // save to localStorage
     setTodos([
       ...todos.slice(0, index),
       {...todo, isDone: !todo.isDone},
@@ -38,8 +38,9 @@ function App() {
   }
 
   function addTodo(title) {
-    // save to localStorage
-    setTodos([...todos, {title, isDone: false, id: uuidv4() }])
+    postTodo({title, isDone: false})
+    .then(todo => setTodos([...todos, todo]))
+    .catch(error => console.log('could not post todo'))
   }
 
 }

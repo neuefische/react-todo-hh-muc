@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "title": "Coffee",
+      "isDone": false,
+      "id": "1"
+    },
+    {
+      "title": "Milk",
+      "isDone": true,
+      "id": "2"
+    },
+    {
+      "title": "foo",
+      "isDone": false,
+      "id": "9Gw1sQK"
+    },
+    {
+      "title": "bar",
+      "isDone": false,
+      "id": "Kc8RT-F"
+    }
+  ]
+}
