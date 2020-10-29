@@ -1,11 +1,12 @@
 import styled from 'styled-components/macro'
 
-export default function Form() {
+export default function Form({onCreateTodo}) {
 
   function handleSubmit(event) {
     event.preventDefault()
     const formElement = event.target
     const input = formElement.title
+    onCreateTodo(input.value)
   }
 
   return <FormStyled onSubmit={handleSubmit}>
