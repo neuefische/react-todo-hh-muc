@@ -6,14 +6,18 @@ import Form from "./Form";
 import saveLocally from "./lib/saveLocally";
 import loadLocally from "./lib/loadLocally";
 import getTodos from "./services/getTodos";
+import getCharacters from "./services/getCharacters";
 
 
 function App() {
   const [todos, setTodos] = useState(loadLocally('todos') ?? [])
+  const [characters, setCharacters] = useState([])
 
   useEffect(() => {
     getTodos().then(todos => setTodos(todos))
   }, [])
+
+  useEffect(() => getCharacters().then(data => setCharacters(data.results)), [])
 
   useEffect(() => {
     saveLocally('todos', todos)
@@ -24,6 +28,8 @@ function App() {
       <Form onCreateTodo={addTodo} />
       {todos.map(({title, isDone, id}, index) =>
       <Todo onClick={() => toggleTodo(index)} title={title} isDone={isDone} key={id} />)}
+
+      {characters.map(char => <div>{char.name}</div>)}
     </div>
   );
 
