@@ -17,8 +17,7 @@ function App() {
   return (
     <div className="App">
       <Form onCreateTodo={addTodo} />
-      <Todo title="Milk" />
-      <Todo title="Coffee" isDone />
+      {todos.map(({title, isDone, id}) => <Todo title={title} isDone={isDone} key={id} />)}
     </div>
   );
 }

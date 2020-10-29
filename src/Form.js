@@ -7,6 +7,8 @@ export default function Form({onCreateTodo}) {
     const formElement = event.target
     const input = formElement.title
     onCreateTodo(input.value)
+    formElement.reset()
+    input.focus()
   }
 
   return <FormStyled onSubmit={handleSubmit}>
