@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Todo from "./Todo";
 import { v4 as uuidv4 } from 'uuid';
 import Form from "./Form";
+import saveLocally from "./lib/saveLocally";
 
 
 function App() {
   const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    saveLocally('todos', todos)
+  }, [todos])
 
   return (
     <div className="App">
@@ -18,7 +23,7 @@ function App() {
 
   function toggleTodo(index) {
     const todo = todos[index]
-
+    // save to localStorage
     setTodos([
       ...todos.slice(0, index),
       {...todo, isDone: !todo.isDone},
@@ -27,6 +32,7 @@ function App() {
   }
 
   function addTodo(title) {
+    // save to localStorage
     setTodos([...todos, {title, isDone: false, id: uuidv4() }])
   }
 
