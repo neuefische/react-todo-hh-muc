@@ -4,10 +4,11 @@ import Todo from "./Todo";
 import { v4 as uuidv4 } from 'uuid';
 import Form from "./Form";
 import saveLocally from "./lib/saveLocally";
+import loadLocally from "./lib/loadLocally";
 
 
 function App() {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(loadLocally('todos') ?? [])
 
   useEffect(() => {
     saveLocally('todos', todos)
