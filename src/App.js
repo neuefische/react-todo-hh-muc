@@ -29,7 +29,6 @@ function App() {
 
   function toggleTodo(index) {
     const todo = todos[index]
-    // save to localStorage
     setTodos([
       ...todos.slice(0, index),
       {...todo, isDone: !todo.isDone},
@@ -38,7 +37,6 @@ function App() {
   }
 
   function addTodo(title) {
-    // save to localStorage
     setTodos([...todos, {title, isDone: false, id: uuidv4() }])
   }
 
