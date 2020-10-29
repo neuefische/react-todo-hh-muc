@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-
+import styled from 'styled-components/macro'
 export default Todo
 
 Todo.propTypes = {
@@ -8,10 +8,21 @@ Todo.propTypes = {
 }
 
 function Todo({title, isDone}) {
-  return <div>
+  return <Wrapper>
     <label>
-      <input type="checkbox" checked={isDone} />
-      {title}
+      <BigCheckbox type="checkbox" checked={isDone} />
+      <span>{title}</span>
     </label>
-  </div>
+  </Wrapper>
 }
+
+const BigCheckbox = styled.input`
+  transform: scale(1.5);
+  margin-right: 10px;
+`
+
+const Wrapper = styled.div`
+  font-family: sans-serif;
+  font-weight: 600;
+  margin-bottom: 12px;
+`
