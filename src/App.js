@@ -23,9 +23,9 @@ function App() {
 
   return (
     <Wrapper isDark={isDarkmodeOn}>
-      Toggle Darkmode: <ToggleButton
-                        defaultText="Off"
-                        activeText="On"
+      <ToggleButton
+                        defaultText="Turn darkmode on"
+                        activeText="Turn darkmode off"
                         isActive={isDarkmodeOn}
                         onClick={() => setIsDarkmodeOn(!isDarkmodeOn)}
                         />
@@ -58,9 +58,14 @@ function App() {
 }
 
 const Wrapper = styled.div`
-  font-family: sans-serif;
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 20px;
+  padding: 8px;
   background: ${props => props.isDark ? '#336' : '#efefef'};
   color: ${props => props.isDark ? 'white' : '#333'};
+  height: 100vh;
 `
 
 export default App;

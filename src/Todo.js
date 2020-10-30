@@ -21,6 +21,7 @@ function Todo({title, isDone, onClick, onDelete}) {
 const DeleteButton = styled.span`
   font-size: 1.2em;
   color: crimson;
+  margin-left: 4px;
 `
 
 const BigCheckbox = styled.input`
@@ -29,7 +30,6 @@ const BigCheckbox = styled.input`
 `
 
 const Wrapper = styled.div`
-  font-family: sans-serif;
   font-weight: 600;
   margin-bottom: 12px;
 `

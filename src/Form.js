@@ -23,15 +23,14 @@ export default function Form({onCreateTodo}) {
 const FormStyled = styled.form`
   display: grid;
   gap: 4px;
+  width: 100%;
   margin-bottom: 20px;
-
-  label {
-    font-family: sans-serif;
-  }
+  justify-items: stretch;
 
   input {
     font-size: 1em;
-    margin-left: 6px;
+    width: 100%;
+    padding: 4px 0;
   }
 `
 
