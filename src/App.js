@@ -6,10 +6,12 @@ import Form from "./Form";
 import saveLocally from "./lib/saveLocally";
 import loadLocally from "./lib/loadLocally";
 import getTodos from "./services/getTodos";
-
+import styled from 'styled-components/macro'
+import ToggleButton from "./ToggleButton";
 
 function App() {
   const [todos, setTodos] = useState(loadLocally('todos') ?? [])
+  const [isDarkmodeOn, setIsDarkmodeOn] = useState(false)
 
   useEffect(() => {
     getTodos().then(todos => setTodos(todos))
@@ -20,11 +22,17 @@ function App() {
   }, [todos])
 
   return (
-    <div className="App">
+    <Wrapper isDark={isDarkmodeOn}>
+      Toggle Darkmode: <ToggleButton
+                        defaultText="Off"
+                        activeText="On"
+                        isActive={isDarkmodeOn}
+                        onClick={() => setIsDarkmodeOn(!isDarkmodeOn)}
+                        />
       <Form onCreateTodo={addTodo} />
       {todos.map(({title, isDone, id}, index) =>
       <Todo onDelete={() => deleteTodo(index)} onClick={() => toggleTodo(index)} title={title} isDone={isDone} key={id} />)}
-    </div>
+    </Wrapper>
   );
 
   function deleteTodo(index) {
@@ -48,5 +56,11 @@ function App() {
   }
 
 }
+
+const Wrapper = styled.div`
+  font-family: sans-serif;
+  background: ${props => props.isDark ? '#336' : '#efefef'};
+  color: ${props => props.isDark ? 'white' : '#333'};
+`
 
 export default App;
