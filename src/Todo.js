@@ -7,15 +7,21 @@ Todo.propTypes = {
   isDone: PropTypes.bool
 }
 
-function Todo({title, isDone, onClick}) {
+function Todo({title, isDone, onClick, onDelete}) {
 
   return <Wrapper>
     <label>
       <BigCheckbox type="checkbox" checked={isDone} onChange={onClick} />
       <span>{title}</span>
+      <DeleteButton onClick={onDelete}>&times;</DeleteButton>
     </label>
   </Wrapper>
 }
+
+const DeleteButton = styled.span`
+  font-size: 1.2em;
+  color: crimson;
+`
 
 const BigCheckbox = styled.input`
   transform: scale(1.5);

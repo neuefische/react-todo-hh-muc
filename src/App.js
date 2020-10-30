@@ -23,9 +23,16 @@ function App() {
     <div className="App">
       <Form onCreateTodo={addTodo} />
       {todos.map(({title, isDone, id}, index) =>
-      <Todo onClick={() => toggleTodo(index)} title={title} isDone={isDone} key={id} />)}
+      <Todo onDelete={() => deleteTodo(index)} onClick={() => toggleTodo(index)} title={title} isDone={isDone} key={id} />)}
     </div>
   );
+
+  function deleteTodo(index) {
+    setTodos([
+      ...todos.slice(0, index),
+      ...todos.slice(index + 1)
+    ])
+  }
 
   function toggleTodo(index) {
     const todo = todos[index]
